@@ -32,7 +32,9 @@ jobs:
             - image: circleci/node
         steps:
             - checkout
-            - run: echo "It's Friday!"
+            - run: 
+                name: "Test 3"
+                command: echo "It's Friday!"
                 
 workflows:
     version: 2
