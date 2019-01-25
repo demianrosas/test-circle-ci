@@ -1,9 +1,8 @@
 version: 2.1
-
-orbs:
-  hello-build: circleci/hello-build
-
-workflows:
-    "Hello Workflow":
-        jobs:
-            -hello/hello-build
+jobs:
+    build:
+        steps:
+            - run:
+                name: Testing
+                command: |
+                    echo "Hello world"
