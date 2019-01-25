@@ -18,7 +18,7 @@ jobs:
         steps:
             - checkout
             - run: echo "Good morning everyone"
-            - attach_wrokspace:
+            - attach_workspace:
                 at: my_workspace
             - run: |
                 if [[ $(cat my_workspace/echo-output) == "New feature" ]]; then
