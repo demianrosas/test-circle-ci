@@ -27,6 +27,12 @@ jobs:
                     echo "Nope!"; exit 1
                 fi
             - run: echo "My password is $password"
+    build_3: 
+        docker:
+            - image: circleci/node
+        steps:
+            - checkout
+            - run: echo "It's Friday!"
                 
 workflows:
     version: 2
@@ -36,3 +42,8 @@ workflows:
             - build_2: 
                 requires:
                     - build_1
+    three:
+        jobs:
+            - build_3
+                    
+                    
