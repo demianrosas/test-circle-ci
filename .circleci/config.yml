@@ -1,21 +1,37 @@
 version: 2
 jobs:
-    build_1:
+    build_1: # this one job
         docker:
             - image: circleci/node
         steps:
             - checkout
             - run: echo "Hello world"
-    build_2:
+            - run: mkdir -p my_workspace
+            - run: echo "New feature" > my_workspace/echo-output
+            - persist_to_workspace:
+                root: my_workspace
+                paths:
+                    - echo-output
+    build_2: # this another job
         docker:
             - image: circleci/node
         steps:
             - checkout
-            - run: echo "Buenas noches America"
-            
+            - run: echo "Good morning everyone"
+            - attach_wrokspace:
+                at: my_workspace
+            - run: |
+                if [[ $(cat my_workspace/echo-output) == "New feature" ]]; then
+                    echo "It worked!";
+                else 
+                    echo "Nope!"; exit 1
+                fi
+                
 workflows:
     version: 2
-    one_and_two:
+    one_and_two: # here you can invoke any job, those will run parallel
         jobs:
             - build_1
-            - build_2
+            - build_2: 
+                requires:
+                    -build_1
