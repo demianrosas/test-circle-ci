@@ -7,7 +7,9 @@ commands:
         type: string
         default: "Hello World"
     steps:
-      - run: echo << parameters.to >>
+      - run: 
+            name: "Say Hello"
+            command: echo "Hello " << parameters.to >>
 jobs:
     build_1: # this one job
         docker:
@@ -45,7 +47,6 @@ jobs:
                 name: "Test 3"
                 command: echo "It's Friday!"
             - sayhello:
-                name: "Hello to"
                 to: "Demian"
                 
 workflows:
