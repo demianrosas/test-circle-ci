@@ -45,6 +45,7 @@ jobs:
                 name: "Test 3"
                 command: echo "It's Friday!"
             - sayhello:
+                name: "Hello to"
                 to: "Demian"
                 
 workflows:
