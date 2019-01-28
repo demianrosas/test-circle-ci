@@ -59,7 +59,7 @@ jobs:
             - run: 
                 name: "Test 3"
                 command: echo "It's Friday!"
-            when:
+            - when:
                 condition: << parameters.greet >>
                 steps:
                     - sayhello:
