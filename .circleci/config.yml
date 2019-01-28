@@ -73,7 +73,7 @@ workflows:
                     - build_1
     three:
         jobs:
-            - build_3
+            - build_3:
                 ex: my-ejecutor
                     
                     
