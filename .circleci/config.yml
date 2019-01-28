@@ -1,4 +1,8 @@
 version: 2.1
+executors:
+    my-ejecutor:
+        docker:
+            - image: circleci/node
 commands:
   sayhello:
     description: "A very simple command for demonstration purposes"
@@ -6,14 +10,16 @@ commands:
       to:
         type: string
         default: "Hello World"
+      morning:
+        type: boolean
+        default: false
     steps:
       - run: 
             name: "Say Hello"
-            command: echo "Hello " << parameters.to >>
+            command: echo "Hello" << parameters.to >> <<# morning>>. Good morning!! <</ morning>>
 jobs:
     build_1: # this one job
-        docker:
-            - image: circleci/node
+        executor: my-ejecutor
         steps:
             - checkout
             - run: echo "Hello world"
@@ -24,8 +30,7 @@ jobs:
                 paths:
                     - echo-output
     build_2: # this another job
-        docker:
-            - image: circleci/node
+        executor: my-ejecutor
         steps:
             - checkout
             - run: echo "Good morning everyone"
@@ -39,8 +44,7 @@ jobs:
                 fi
             - run: echo "My password is $password"
     build_3: 
-        docker:
-            - image: circleci/node
+        executor: my-ejecutor
         steps:
             - checkout
             - run: 
@@ -48,6 +52,9 @@ jobs:
                 command: echo "It's Friday!"
             - sayhello:
                 to: "Demian"
+            - sayhello:
+                to: "John"
+                morning: true
                 
 workflows:
     version: 2
