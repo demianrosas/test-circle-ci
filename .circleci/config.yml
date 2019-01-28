@@ -43,7 +43,9 @@ jobs:
             - checkout
             - run: 
                 name: "Test 3"
-                command: sayhello
+                command: echo "It's Friday!"
+            - sayhello:
+                to: "Demian"
                 
 workflows:
     version: 2
