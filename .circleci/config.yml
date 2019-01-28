@@ -1,4 +1,13 @@
 version: 2.1
+commands:
+  sayhello:
+    description: "A very simple command for demonstration purposes"
+    parameters:
+      to:
+        type: string
+        default: "Hello World"
+    steps:
+      - run: echo << parameters.to >>
 jobs:
     build_1: # this one job
         docker:
@@ -34,7 +43,7 @@ jobs:
             - checkout
             - run: 
                 name: "Test 3"
-                command: echo "It's Friday!"
+                command: sayhello
                 
 workflows:
     version: 2
