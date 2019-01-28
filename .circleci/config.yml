@@ -16,7 +16,7 @@ commands:
     steps:
       - run: 
             name: "Say Hello"
-            command: echo "Hello" << parameters.to >> <<# morning >>. Good morning!! <</ morning >>
+            command: echo "Hello" << parameters.to >> <<# parameters.morning >>. Good morning!! <</ parameters.morning >>
 jobs:
     build_1: # this one job
         executor: my-ejecutor
@@ -53,8 +53,8 @@ jobs:
             - sayhello:
                 to: "Demian"
             - sayhello:
-                to: "John"
                 morning: true
+                to: "John"                
                 
 workflows:
     version: 2
