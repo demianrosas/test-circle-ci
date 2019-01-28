@@ -50,7 +50,7 @@ jobs:
         parameters:
             ex: 
                 type: executor
-        executor: << parameters.executor >>
+        executor: << parameters.ex >>
         steps:
             - checkout
             - run: 
