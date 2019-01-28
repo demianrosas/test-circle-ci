@@ -50,17 +50,23 @@ jobs:
         parameters:
             ex: 
                 type: executor
+            greet:
+                type: boolean
+                default: false
         executor: << parameters.ex >>
         steps:
             - checkout
             - run: 
                 name: "Test 3"
                 command: echo "It's Friday!"
-            - sayhello:
-                to: "Demian"
-            - sayhello:
-                morning: true
-                to: "John"                
+            when:
+                condition: << parameters.greet >>
+                steps:
+                    - sayhello:
+                        to: "Demian"
+                    - sayhello:
+                        morning: true
+                        to: "John"                
                 
 workflows:
     version: 2
@@ -75,5 +81,10 @@ workflows:
         jobs:
             - build_3:
                 ex: my-ejecutor
+    four:
+        jobs:
+            - build_3:
+                ex: my-ejecutor
+                greet: true
                     
                     
