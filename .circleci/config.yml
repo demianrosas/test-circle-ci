@@ -47,7 +47,10 @@ jobs:
                 fi
             - run: echo "My password is $password"
     build_3: 
-        executor: my-ejecutor
+        parameters:
+            ex: 
+                type: executor
+        executor: << parameters.executor >>
         steps:
             - checkout
             - run: 
@@ -71,5 +74,6 @@ workflows:
     three:
         jobs:
             - build_3
+                ex: my-ejecutor
                     
                     
