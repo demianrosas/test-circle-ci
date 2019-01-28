@@ -1,8 +1,10 @@
 version: 2.1
+
 executors:
     my-ejecutor:
         docker:
             - image: circleci/node
+            
 commands:
   sayhello:
     description: "A very simple command for demonstration purposes"
@@ -17,6 +19,7 @@ commands:
       - run: 
             name: "Say Hello"
             command: echo "Hello" << parameters.to >> <<# parameters.morning >>. Good morning!! <</ parameters.morning >>
+            
 jobs:
     build_1: # this one job
         executor: my-ejecutor
@@ -31,6 +34,7 @@ jobs:
                     - echo-output
     build_2: # this another job
         executor: my-ejecutor
+        context: test
         steps:
             - checkout
             - run: echo "Good morning everyone"
