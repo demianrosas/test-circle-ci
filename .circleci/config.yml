@@ -1,26 +1,26 @@
 version: 2.1
 
-executors:
+executors: # configuration of image where the jobs will be executed
     my-ejecutor:
         docker:
-            - image: circleci/node
+            - image: circleci/node 
             
-commands:
-  sayhello:
+commands: # commands that you can configure to use within jobs
+  sayhello: # name of the command
     description: "A very simple command for demonstration purposes"
-    parameters:
+    parameters: # you can configure parameters
       to:
         type: string
         default: "Hello World"
       morning:
         type: boolean
         default: false
-    steps:
+    steps: # this is what the command will execute. You can set more than one step.
       - run: 
             name: "Say Hello"
             command: echo "Hello" << parameters.to >> <<# parameters.morning >>. Good morning!! <</ parameters.morning >>
             
-jobs:
+jobs: # a job is a set of step that you can execute. 
     build_1: # this one job
         executor: my-ejecutor
         steps:
@@ -47,7 +47,7 @@ jobs:
                 fi
             - run: echo "My password is $password"
     build_3: 
-        parameters:
+        parameters: # a job can contain parameters
             ex: 
                 type: executor
             greet:
@@ -68,14 +68,14 @@ jobs:
                         morning: true
                         to: "John"                
                 
-workflows:
+workflows: # a workflow is a set of jobs. 
     version: 2
-    one_and_two: # here you can invoke any job, those will run parallel
+    one_and_two: # here you can invoke any job, those will run parallel unless you set the "requires" tag
         jobs:
             - build_1
             - build_2: 
                 context: test
-                requires:
+                requires: # with this setting build_2 will wait until build_1 finish
                     - build_1
     three:
         jobs:
