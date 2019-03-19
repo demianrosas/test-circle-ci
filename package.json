@@ -1,0 +1,43 @@
+{
+  "name": "test-circle-ci",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/demianrosas/test-circle-ci.git",
+  "author": "Demian",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec babel-node tools/srcServer.js",
+    "webpack": "webpack -wd --hot --inline"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "env",
+      "stage-2"
+    ]
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "7",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^5.12.1",
+    "eslint-plugin-react": "^7.12.4",
+    "express": "^4.16.4",
+    "open": "^0.0.5",
+    "webpack-cli": "^3.2.1"
+  },
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-router": "^4.3.1",
+    "webpack": "^4.29.0",
+    "webpack-dev-middleware": "^3.5.1",
+    "webpack-hot-middleware": "^2.24.3"
+  }
+}
